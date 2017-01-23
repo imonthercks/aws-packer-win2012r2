@@ -1,5 +1,5 @@
 {
-    "builders": [{
+	"builders": [{
         "type": "amazon-ebs",
         "region": "us-east-1",
         "source_ami": "ami-abf616bd",
@@ -16,6 +16,10 @@
         {
             "type": "powershell",
             "script": "provision.ps1"
-        }
+        },
+        {
+            "type": "powershell",
+            "script": "provision-web.ps1"
+        }		
     ]
 }
