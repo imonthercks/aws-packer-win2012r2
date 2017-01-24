@@ -13,17 +13,14 @@
         "communicator": "winrm",
         "winrm_username": "Administrator",
         "winrm_use_ssl": true,
-        "winrm_insecure": true
+        "winrm_insecure": true,
+		"disable_stop_instance": true
     }],
 
     "provisioners": [
-        {
-            "type": "powershell",
-            "script": "./provision/provision.ps1"
-        },		
-        {
-            "type": "powershell",
-            "script": "./provision/provision-web.ps1"
-        }
+		{
+			"type": "windows-shell",
+			"inline": ["\"c:\\Program Files\\Amazon\\Ec2ConfigService\\ec2config.exe\" -sysprep"]
+		}
 	]
 }
