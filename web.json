@@ -1,0 +1,29 @@
+{
+	"variables": {
+		"ami_id": null,
+		"ami_name": null
+	},
+	"builders": [{
+        "type": "amazon-ebs",
+        "region": "us-east-1",
+        "source_ami": "{{user `ami_id`}}",
+        "instance_type": "t2.micro",
+        "ami_name": "{{user `ami_name`}}",
+        "user_data_file":"./provision/ec2-userdata.ps1",
+        "communicator": "winrm",
+        "winrm_username": "Administrator",
+        "winrm_use_ssl": true,
+        "winrm_insecure": true
+    }],
+
+    "provisioners": [
+        {
+            "type": "powershell",
+            "script": "./provision/provision.ps1"
+        },		
+        {
+            "type": "powershell",
+            "script": "./provision/provision-web.ps1"
+        }
+	]
+}
