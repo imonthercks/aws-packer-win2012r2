@@ -9,7 +9,6 @@
         "source_ami": "{{user `ami_id`}}",
         "instance_type": "t2.micro",
         "ami_name": "{{user `ami_name`}}",
-        "user_data_file":"./provision/ec2-userdata.ps1",
         "communicator": "winrm",
         "winrm_username": "Administrator",
         "winrm_use_ssl": true,
@@ -18,6 +17,10 @@
     }],
 
     "provisioners": [
+		{
+			"type": "powershell",
+			"script": "./provision/provision-web.ps1"
+		},
 		{
 			"type": "windows-shell",
 			"inline": ["\"c:\\Program Files\\Amazon\\Ec2ConfigService\\ec2config.exe\" -sysprep"]
