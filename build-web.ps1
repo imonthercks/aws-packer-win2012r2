@@ -1,6 +1,7 @@
 Param(
 	[string]$region = "us-east-1",
-	[int]$revision = 1
+	[int]$revision = 1,
+	[bool]$debug = $false
 )
 
 Set-DefaultAWSRegion -Region $region
@@ -18,6 +19,10 @@ if (!$existingImages){
 }
 $startingImage = $existingImages[0]
 $new_ami_id = $startingImage.ImageId
-$new_ami_name = $image.Name + "_base_" + $revision
+$new_ami_name = $osImage.Name + "_web_" + $revision
 
-packer build -var "ami_id=$new_ami_id" -var "ami_name=$new_ami_name" "web.json"
+if ($debug){
+	packer build -debug -var "ami_id=$new_ami_id" -var "ami_name=$new_ami_name" "web.json"
+} else {
+	packer build -var "ami_id=$new_ami_id" -var "ami_name=$new_ami_name" "web.json"
+}
