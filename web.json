@@ -9,6 +9,7 @@
         "source_ami": "{{user `ami_id`}}",
         "instance_type": "t2.micro",
         "ami_name": "{{user `ami_name`}}",
+        "user_data_file":"./provision/ec2-userdata-web.ps1",
         "communicator": "winrm",
         "winrm_username": "Administrator",
         "winrm_use_ssl": true,
