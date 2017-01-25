@@ -6,8 +6,6 @@ iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 
 choco feature enable -n=allowGlobalConfirmation
 
-cinst Boxstarter
-
 cinst DotNet4.5
 
 #Enable Web Services
